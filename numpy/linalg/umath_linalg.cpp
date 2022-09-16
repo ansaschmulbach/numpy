@@ -4541,8 +4541,17 @@ PyMODINIT_FUNC PyInit__umath_linalg(void)
         return NULL;
     }
 
-    import_array();
+    import_array3();
+    if (PyErr_Occurred()) {
+        Py_DECREF(m);
+        return NULL;
+    }
+
     import_ufunc();
+    if (PyErr_Occurred()) {
+        Py_DECREF(m);
+        return NULL;
+    }
 
     d = PyModule_GetDict(m);
     if (d == NULL) {

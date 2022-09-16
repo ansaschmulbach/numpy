@@ -398,7 +398,11 @@ PyMODINIT_FUNC PyInit_lapack_lite(void)
     if (m == NULL) {
         return NULL;
     }
-    import_array();
+    import_array3();
+    if (PyErr_Occurred()) {
+        Py_DECREF(m);
+        return NULL;
+    }
     d = PyModule_GetDict(m);
     LapackError = PyErr_NewException("lapack_lite.LapackError", NULL, NULL);
     PyDict_SetItemString(d, "LapackError", LapackError);

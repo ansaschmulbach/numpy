@@ -94,6 +94,16 @@ _import_umath(void)
         }\
     } while(0)
 
+#define import_umath3() \
+    do {\
+        UFUNC_NOFPE\
+        if (_import_umath() < 0) {\
+            PyErr_Print();\
+            PyErr_SetString(PyExc_ImportError,\
+                    "numpy.core.umath failed to import");\
+        }\
+    } while(0)
+
 #define import_ufunc() \
     do {\
         UFUNC_NOFPE\

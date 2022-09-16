@@ -710,7 +710,7 @@ PyMODINIT_FUNC PyInit__umath_tests(void) {
         return NULL;
     }
 
-    import_array();
+    import_array3();
     if (PyErr_Occurred()) {
         return NULL;
     }

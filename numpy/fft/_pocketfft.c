@@ -2377,7 +2377,11 @@ PyMODINIT_FUNC PyInit__pocketfft_internal(void)
     }
 
     /* Import the array object */
-    import_array();
+    import_array3();
+    if (PyErr_Occurred()) {
+      Py_DECREF(m);
+      return NULL;
+    }
 
     /* XXXX Add constants here */
 

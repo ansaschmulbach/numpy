@@ -62,10 +62,15 @@ PyMODINIT_FUNC PyInit__operand_flag_tests(void)
         goto fail;
     }
 
-    if (!import_array()) {
+    import_array3();
+    if (PyErr_Occurred()) {
         goto fail;
     }
-    import_umath();
+
+    import_umath3();
+    if (PyErr_Occurred()) {
+        goto fail;
+    }
 
     ufunc = PyUFunc_FromFuncAndData(funcs, data, types, 1, 2, 0,
                                     PyUFunc_None, "inplace_add",

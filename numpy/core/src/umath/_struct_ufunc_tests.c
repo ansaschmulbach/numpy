@@ -129,8 +129,18 @@ PyMODINIT_FUNC PyInit__struct_ufunc_tests(void)
         return NULL;
     }
 
-    import_array();
-    import_umath();
+    import_array3();
+    if (PyErr_Occurred()) {
+        Py_DECREF(m);
+        return NULL;
+    }
+
+    import_umath3();
+    if (PyErr_Occurred()) {
+        Py_DECREF(m);
+        return NULL;
+    }
+
 
     add_triplet = PyUFunc_FromFuncAndData(NULL, NULL, NULL, 0, 2, 1,
                                     PyUFunc_None, "add_triplet",
